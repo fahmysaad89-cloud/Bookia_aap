@@ -1,6 +1,9 @@
+import 'package:bookiaa/core/routes/app_router.dart';
 import 'package:bookiaa/core/routes/app_routes.dart';
 import 'package:bookiaa/core/theme/app_colors.dart';
 import 'package:bookiaa/core/widgets/app_botton.dart';
+import 'package:bookiaa/features/auth/presentation/ui/login_screen.dart';
+import 'package:bookiaa/features/auth/presentation/ui/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -38,7 +41,7 @@ class WelcomeScreen extends StatelessWidget {
               bgcolor: null,
               textcolor: null,
               onPressed: () {
-                Navigator.pushNamed(context, AppRoutes.loginScreen);
+                context.push(const LoginScreen());
               },
             ),
             15.verticalSpace,
@@ -47,7 +50,7 @@ class WelcomeScreen extends StatelessWidget {
               bgcolor: Colors.white,
               textcolor: AppColors.darkColor,
               onPressed: () {
-                Navigator.pushNamed(context, AppRoutes.registerScreen);
+                context.push(const RegisterScreen());
               },
             ),
             94.verticalSpace,
