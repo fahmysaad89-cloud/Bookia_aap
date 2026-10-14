@@ -12,8 +12,8 @@ class AppRouter {
       case AppRoutes.loginScreen:
         return MaterialPageRoute(builder: (_) => LoginScreen());
 
-      // case AppRoutes.registerScreen:
-      //   return MaterialPageRoute(builder: (_) => RegisterScreen());
+      case AppRoutes.registerScreen:
+        return MaterialPageRoute(builder: (_) => RegisterScreen());
     }
   }
 }
