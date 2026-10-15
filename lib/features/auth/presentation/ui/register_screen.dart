@@ -39,6 +39,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       final username = _usernameCtrl.text.trim();
       final email = _emailCtrl.text.trim();
       final password = _passCtrl.text;
+      context.push(const LoginScreen());
     }
   }
 
@@ -110,7 +111,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         const Spacer(),
                         Center(
                           child: Padding(
-                            padding: EdgeInsets.only(top: 20.h, bottom: 24.h),
+                            padding: EdgeInsets.only(bottom: 27.h),
                             child: AuthRedirectText(
                               text: "Already have an account?",
                               actionText: "Login Now",

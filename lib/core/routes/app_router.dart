@@ -1,6 +1,7 @@
 import 'package:bookiaa/core/routes/app_routes.dart';
 import 'package:bookiaa/features/auth/presentation/ui/login_screen.dart';
 import 'package:bookiaa/features/auth/presentation/ui/register_screen.dart';
+import 'package:bookiaa/features/home/presentation/ui/home_screen.dart';
 import 'package:bookiaa/features/welcome/presentation/ui/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +15,8 @@ class AppRouter {
 
       case AppRoutes.registerScreen:
         return MaterialPageRoute(builder: (_) => RegisterScreen());
+      case AppRoutes.homeScreen:
+        return MaterialPageRoute(builder: (_) => HomeScreen());
     }
   }
 }
