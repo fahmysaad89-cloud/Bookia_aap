@@ -46,6 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
             padding: EdgeInsets.symmetric(horizontal: 22.w),
             child: Form(
               key: _formKey,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -92,7 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     textcolor: null,
                     onPressed: _login,
                   ),
-                  230.verticalSpace,
+                  285.verticalSpace,
                   Center(
                     child: AuthRedirectText(
                       text: "Don’t have an account?",
