@@ -2,9 +2,12 @@ import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class AuthRepo {
-  Dio dio = Dio();
+  static Dio dio = Dio();
 
-  Future<bool> login({required String email, required String password}) async {
+  static Future<bool> login({
+    required String email,
+    required String password,
+  }) async {
     try {
       final Response = await dio.post(
         "https://codingarabic.eraapro.com/api/login",

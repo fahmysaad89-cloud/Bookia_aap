@@ -64,7 +64,7 @@ class WelcomeScreen extends StatelessWidget {
               bgcolor: null,
               textcolor: null,
               onPressed: () {
-                context.push(const LoginScreen());
+                Navigator.pushNamed(context, AppRoutes.loginScreen);
               },
             ),
             15.verticalSpace,
@@ -73,7 +73,7 @@ class WelcomeScreen extends StatelessWidget {
               bgcolor: Colors.white,
               textcolor: AppColors.darkColor,
               onPressed: () {
-                context.push(const RegisterScreen());
+                Navigator.pushNamed(context, AppRoutes.registerScreen);
               },
             ),
             94.verticalSpace,
