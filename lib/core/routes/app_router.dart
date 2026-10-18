@@ -1,4 +1,5 @@
 import 'package:bookiaa/core/routes/app_routes.dart';
+import 'package:bookiaa/features/Forgot%20Password/presentation/ui/forgot_password_screen.dart';
 import 'package:bookiaa/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:bookiaa/features/auth/presentation/ui/login_screen.dart';
 import 'package:bookiaa/features/auth/presentation/ui/register_screen.dart';
@@ -21,15 +22,23 @@ class AppRouter {
         );
 
       case AppRoutes.registerScreen:
-        return MaterialPageRoute(builder: (_) => RegisterScreen());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => AuthCubit(),
+            child: RegisterScreen(),
+          ),
+        );
       case AppRoutes.homeScreen:
         return MaterialPageRoute(builder: (_) => HomeScreen());
+
+      case AppRoutes.forgotPasswordScreen:
+        return MaterialPageRoute(builder: (_) => ForgotPasswordScreen());
     }
   }
 }
 
-extension NavigationExtension on BuildContext {
-  void push(Widget pages) {
-    Navigator.push(this, MaterialPageRoute(builder: (context) => pages));
-  }
-}
+// extension NavigationExtension on BuildContext {
+//   void push(Widget pages) {
+//     Navigator.push(this, MaterialPageRoute(builder: (context) => pages));
+//   }
+// }

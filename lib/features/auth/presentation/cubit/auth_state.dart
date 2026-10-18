@@ -10,3 +10,9 @@ final class LoginLogingStste extends AuthState {}
 final class LoginSuccessStste extends AuthState {}
 
 final class LoginErrorStste extends AuthState {}
+
+final class RegisterLodingState extends AuthState {}
+
+final class RegisterSuccessState extends AuthState {}
+
+final class RegisterErrorState extends AuthState {}

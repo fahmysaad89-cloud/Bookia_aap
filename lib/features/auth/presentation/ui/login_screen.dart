@@ -65,13 +65,23 @@ class _LoginScreenState extends State<LoginScreen> {
                         showDialog(
                           context: context,
                           barrierDismissible: false,
-                          builder: (context) => AlertDialog(
-                            backgroundColor: Colors.transparent,
-                            content: Center(child: CircularProgressIndicator()),
+                          builder: (_) => const AlertDialog(
+                            content: Row(
+                              children: [
+                                CircularProgressIndicator(
+                                  color: Color(0xFF6C4DDA),
+                                ),
+                                SizedBox(width: 20),
+                                Text(
+                                  'Loading...',
+                                  style: TextStyle(fontWeight: .bold),
+                                ),
+                              ],
+                            ),
                           ),
                         );
                       } else if (state is LoginSuccessStste) {
-                        context.push(const HomeScreen());
+                        Navigator.pushNamed(context, AppRoutes.homeScreen);
                       } else {
                         Navigator.pop(context);
 
@@ -86,6 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             title: const Text('Login Failed'),
                             content: const Text(
                               'Please check your email and password.',
+                              style: TextStyle(fontWeight: .bold),
                               textAlign: TextAlign.center,
                             ),
                             actions: [
@@ -96,25 +107,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             ],
                           ),
                         );
-
-                        // ScaffoldMessenger.of(context).showSnackBar(
-                        //   const SnackBar(
-                        //     content: Center(
-                        //       child: Text(
-                        //         'Login failed',
-                        //         style: TextStyle(
-                        //           fontSize: 20,
-                        //           fontWeight: .bold,
-                        //         ),
-                        //       ),
-                        //     ),
-                        //   ),
-                        // );
-                        // showDialog(
-                        //   context: context,
-                        //   builder: (context) =>
-                        //       AlertDialog(content: Text("Error")),
-                        // );
                       }
                     },
                     child: Form(
@@ -150,7 +142,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             alignment: AlignmentDirectional.centerEnd,
                             child: InkWell(
                               onTap: () {
-                                context.push(const ForgotPasswordScreen());
+                                Navigator.pushNamed(
+                                  context,
+                                  AppRoutes.forgotPasswordScreen,
+                                );
                               },
                               child: Text(
                                 "Forgot Password?",
@@ -174,8 +169,10 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: AuthRedirectText(
                                 text: "Don’t have an account?",
                                 actionText: "Register Now",
-                                onTap: () =>
-                                    context.push(const RegisterScreen()),
+                                onTap: () => Navigator.pushNamed(
+                                  context,
+                                  AppRoutes.registerScreen,
+                                ),
                               ),
                             ),
                           ),

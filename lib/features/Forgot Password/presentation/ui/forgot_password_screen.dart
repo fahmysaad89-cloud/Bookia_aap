@@ -1,4 +1,5 @@
 import 'package:bookiaa/core/routes/app_router.dart';
+import 'package:bookiaa/core/routes/app_routes.dart';
 import 'package:bookiaa/core/theme/app_text_styles.dart';
 import 'package:bookiaa/core/widgets/app_back_button.dart';
 import 'package:bookiaa/core/widgets/app_botton.dart';
@@ -50,7 +51,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                           text: "Remember Password?",
                           actionText: "Login",
                           onTap: () {
-                            context.push(const LoginScreen());
+                            Navigator.pushNamed(context, AppRoutes.loginScreen);
                           },
                         ),
                       ),

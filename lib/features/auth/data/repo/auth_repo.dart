@@ -23,4 +23,31 @@ class AuthRepo {
       return false;
     }
   }
+
+  static Future<bool> register({
+    required String name,
+    required String email,
+    required String password,
+    required String password_confirmation,
+  }) async {
+    try {
+      final Response = await dio.post(
+        "https://codingarabic.eraapro.com/api/register",
+        data: {
+          "name": name,
+          "email": email,
+          "password": password,
+          "password_confirmation": password_confirmation,
+        },
+      );
+
+      if (Response.statusCode == 201) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      return false;
+    }
+  }
 }
