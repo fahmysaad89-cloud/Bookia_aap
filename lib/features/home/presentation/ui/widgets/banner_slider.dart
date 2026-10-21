@@ -33,15 +33,12 @@ class _BannerSliderState extends State<BannerSlider> {
             autoPlayAnimationDuration: const Duration(milliseconds: 400),
             onPageChanged: (index, _) => setState(() => _current = index),
           ),
-          itemBuilder: (context, index, _) => Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(16.r),
-              child: Image.asset(
-                _banners[index],
-                width: double.infinity,
-                fit: BoxFit.cover,
-              ),
+          itemBuilder: (context, index, _) => ClipRRect(
+            borderRadius: BorderRadius.circular(16.r),
+            child: Image.asset(
+              _banners[index],
+              width: double.infinity,
+              fit: BoxFit.cover,
             ),
           ),
         ),

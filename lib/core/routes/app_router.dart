@@ -3,6 +3,7 @@ import 'package:bookiaa/features/Forgot%20Password/presentation/ui/forgot_passwo
 import 'package:bookiaa/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:bookiaa/features/auth/presentation/ui/login_screen.dart';
 import 'package:bookiaa/features/auth/presentation/ui/register_screen.dart';
+import 'package:bookiaa/features/home/presentation/cubit/home_cubit.dart';
 import 'package:bookiaa/features/home/presentation/ui/home_screen.dart';
 import 'package:bookiaa/features/welcome/presentation/ui/welcome_screen.dart';
 import 'package:flutter/material.dart';
@@ -29,10 +30,18 @@ class AppRouter {
           ),
         );
       case AppRoutes.homeScreen:
-        return MaterialPageRoute(builder: (_) => HomeScreen());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => HomeCubit()..getsellerbooks(),
+            child: HomeScreen(),
+          ),
+        );
 
       case AppRoutes.forgotPasswordScreen:
         return MaterialPageRoute(builder: (_) => ForgotPasswordScreen());
+
+      // case AppRoutes.searchScreen:
+      //   return MaterialPageRoute(builder: (_) => searchScreen());
     }
   }
 }
