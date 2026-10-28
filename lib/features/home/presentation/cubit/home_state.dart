@@ -7,9 +7,18 @@ final class HomeInitial extends HomeState {}
 
 final class GetBestSellerloding extends HomeState {}
 
+final class GetBestSellerError extends HomeState {}
+
 final class GetBestSellerSuccess extends HomeState {
   final List<Products>? products;
   GetBestSellerSuccess(this.products);
 }
 
-final class GetBestSellerError extends HomeState {}
+final class SearchLoading extends HomeState {}
+
+final class SearchError extends HomeState {}
+
+final class SearchSuccess extends HomeState {
+  final List<Products>? products;
+  SearchSuccess(this.products);
+}

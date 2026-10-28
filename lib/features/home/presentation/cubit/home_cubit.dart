@@ -18,4 +18,14 @@ class HomeCubit extends Cubit<HomeState> {
       emit(GetBestSellerError());
     }
   }
+
+  search(String text) async {
+    emit(SearchLoading());
+    final data = await HomeRepo.search(text);
+    if (data is List<Products>) {
+      emit(SearchSuccess(data));
+    } else {
+      emit(SearchError());
+    }
+  }
 }

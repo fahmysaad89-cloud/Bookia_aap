@@ -1,3 +1,4 @@
+import 'package:bookiaa/core/routes/app_routes.dart';
 import 'package:bookiaa/core/theme/app_colors.dart';
 import 'package:bookiaa/core/theme/app_text_styles.dart';
 import 'package:bookiaa/features/home/data/models/books_models.dart';
@@ -23,7 +24,11 @@ class HomeScreen extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 19.w),
           child: Column(
             children: [
-              HomeHeader(onSearchTap: () {}),
+              HomeHeader(
+                onSearchTap: () {
+                  Navigator.pushNamed(context, AppRoutes.searchScreen);
+                },
+              ),
 
               25.verticalSpace,
 

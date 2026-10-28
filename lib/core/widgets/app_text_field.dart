@@ -4,6 +4,7 @@ class AppTextField extends StatefulWidget {
   final String hint;
   final TextEditingController? controller;
   final bool isPassword;
+  final bool? autofocus;
   final TextInputType keyboardType;
   final String? Function(String?)? validator;
   final void Function(String)? onChanged;
@@ -20,6 +21,7 @@ class AppTextField extends StatefulWidget {
     this.onChanged,
     this.prefixIcon,
     this.textInputAction,
+    this.autofocus,
   });
 
   @override
@@ -43,6 +45,7 @@ class _AppTextFieldState extends State<AppTextField> {
     );
 
     return TextFormField(
+      autofocus: widget.autofocus ?? false,
       controller: widget.controller,
       obscureText: _obscure,
       keyboardType: widget.keyboardType,

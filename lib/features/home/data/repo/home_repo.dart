@@ -4,13 +4,30 @@ import 'package:bookiaa/features/home/data/models/books_models.dart';
 import 'package:dio/dio.dart';
 
 class HomeRepo {
-  static getBestSellerBooks() async {
+  static Future<booksmodels?>? getBestSellerBooks() async {
     try {
-      final Response = await DioFactory.dio?.get(ApiEndpoint.bestseller);
+      final response = await DioFactory.dio?.get(ApiEndpoint.bestseller);
 
-      if (Response?.statusCode == 200) {
-        booksmodels books = booksmodels.fromJson(Response?.data);
+      if (response?.statusCode == 200) {
+        booksmodels books = booksmodels.fromJson(response?.data);
         return books;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      return null;
+    }
+  }
+
+  static Future<List<Products?>?> search(String text) async {
+    try {
+      final response = await DioFactory.dio?.get(
+        ApiEndpoint.search,
+        queryParameters: {"name": text},
+      );
+      if (response?.statusCode == 200) {
+        booksmodels booksModel = booksmodels.fromJson(response?.data);
+        return booksModel.data?.products;
       } else {
         return null;
       }
