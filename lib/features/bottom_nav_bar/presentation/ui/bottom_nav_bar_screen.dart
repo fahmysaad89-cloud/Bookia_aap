@@ -1,6 +1,7 @@
 import 'package:bookiaa/core/theme/app_colors.dart';
 import 'package:bookiaa/features/home/presentation/cubit/home_cubit.dart';
 import 'package:bookiaa/features/home/presentation/ui/home_screen.dart';
+import 'package:bookiaa/features/profile/presentation/ui/profile_screen.dart';
 import 'package:bookiaa/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,11 +21,14 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
       create: (context) => HomeCubit()..getsellerbooks(),
       child: HomeScreen(),
     ),
+    ProfileScreen(),
+    ProfileScreen(),
+    ProfileScreen(),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: screens[0],
+      body: screens[currentindex],
       backgroundColor: AppColors.bgColor,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentindex,

@@ -29,6 +29,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/Profile.svg
   SvgGenImage get profile => const SvgGenImage('assets/icons/Profile.svg');
 
+  /// File path: assets/icons/profile logout.svg
+  SvgGenImage get profileLogout =>
+      const SvgGenImage('assets/icons/profile logout.svg');
+
   /// File path: assets/icons/search-normal.svg
   SvgGenImage get searchNormal =>
       const SvgGenImage('assets/icons/search-normal.svg');
@@ -39,6 +43,7 @@ class $AssetsIconsGen {
     category,
     home,
     profile,
+    profileLogout,
     searchNormal,
   ];
 }
