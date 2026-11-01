@@ -17,12 +17,30 @@ import 'package:vector_graphics/vector_graphics.dart' as _vg;
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/Bookmark.svg
+  SvgGenImage get bookmark => const SvgGenImage('assets/icons/Bookmark.svg');
+
+  /// File path: assets/icons/Category.svg
+  SvgGenImage get category => const SvgGenImage('assets/icons/Category.svg');
+
+  /// File path: assets/icons/Home.svg
+  SvgGenImage get home => const SvgGenImage('assets/icons/Home.svg');
+
+  /// File path: assets/icons/Profile.svg
+  SvgGenImage get profile => const SvgGenImage('assets/icons/Profile.svg');
+
   /// File path: assets/icons/search-normal.svg
   SvgGenImage get searchNormal =>
       const SvgGenImage('assets/icons/search-normal.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [searchNormal];
+  List<SvgGenImage> get values => [
+    bookmark,
+    category,
+    home,
+    profile,
+    searchNormal,
+  ];
 }
 
 class $AssetsImagesGen {
