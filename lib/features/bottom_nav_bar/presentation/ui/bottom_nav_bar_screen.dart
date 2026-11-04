@@ -1,6 +1,7 @@
 import 'package:bookiaa/core/theme/app_colors.dart';
 import 'package:bookiaa/features/home/presentation/cubit/home_cubit.dart';
 import 'package:bookiaa/features/home/presentation/ui/home_screen.dart';
+import 'package:bookiaa/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:bookiaa/features/profile/presentation/ui/profile_screen.dart';
 import 'package:bookiaa/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
@@ -21,9 +22,19 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
       create: (context) => HomeCubit()..getsellerbooks(),
       child: HomeScreen(),
     ),
-    ProfileScreen(),
-    ProfileScreen(),
-    ProfileScreen(),
+    BlocProvider(
+      create: (context) => HomeCubit()..getsellerbooks(),
+      child: HomeScreen(),
+    ),
+    BlocProvider(
+      create: (context) => HomeCubit()..getsellerbooks(),
+      child: HomeScreen(),
+    ),
+
+    BlocProvider(
+      create: (context) => ProfileCubit()..Getprofiledata(),
+      child: ProfileScreen(),
+    ),
   ];
   @override
   Widget build(BuildContext context) {

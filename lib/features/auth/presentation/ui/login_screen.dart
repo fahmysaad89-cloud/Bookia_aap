@@ -81,7 +81,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         );
                       } else if (state is LoginSuccessStste) {
-                        Navigator.pushNamed(context, AppRoutes.homeScreen);
+                        Navigator.pushNamed(
+                          context,
+                          AppRoutes.bottomnNavScreen,
+                        );
                       } else {
                         Navigator.pop(context);
 
