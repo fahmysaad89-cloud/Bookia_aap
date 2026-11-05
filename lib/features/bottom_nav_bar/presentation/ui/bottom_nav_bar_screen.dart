@@ -1,4 +1,6 @@
 import 'package:bookiaa/core/theme/app_colors.dart';
+import 'package:bookiaa/features/cart/presentation/cubit/cart_cubit.dart';
+import 'package:bookiaa/features/cart/presentation/ui/cart_screen.dart';
 import 'package:bookiaa/features/home/presentation/cubit/home_cubit.dart';
 import 'package:bookiaa/features/home/presentation/ui/home_screen.dart';
 import 'package:bookiaa/features/profile/presentation/cubit/profile_cubit.dart';
@@ -22,13 +24,15 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
       create: (context) => HomeCubit()..getsellerbooks(),
       child: HomeScreen(),
     ),
+
     BlocProvider(
       create: (context) => HomeCubit()..getsellerbooks(),
       child: HomeScreen(),
     ),
+
     BlocProvider(
-      create: (context) => HomeCubit()..getsellerbooks(),
-      child: HomeScreen(),
+      create: (context) => CartCubit()..getcartdata(),
+      child: CartScreen(),
     ),
 
     BlocProvider(

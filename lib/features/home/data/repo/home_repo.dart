@@ -1,5 +1,6 @@
 import 'package:bookiaa/core/networking/api_endpoint.dart';
 import 'package:bookiaa/core/networking/dio_factory.dart';
+import 'package:bookiaa/core/utls/app_constans.dart';
 import 'package:bookiaa/features/home/data/models/books_models.dart';
 import 'package:dio/dio.dart';
 
@@ -33,6 +34,23 @@ class HomeRepo {
       }
     } catch (e) {
       return null;
+    }
+  }
+
+  static addtocart(int productaId) async {
+    try {
+      final response = await DioFactory.dio?.post(
+        ApiEndpoint.addToCart,
+        data: {"product_id": productaId},
+      );
+
+      if (response?.statusCode == 201) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      return false;
     }
   }
 }

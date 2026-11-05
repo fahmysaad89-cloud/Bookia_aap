@@ -49,6 +49,10 @@ class HomeScreen extends StatelessWidget {
 
             Expanded(
               child: BlocBuilder<HomeCubit, HomeState>(
+                buildWhen: (previous, current) =>
+                    current is GetBestSellerError ||
+                    current is GetBestSellerSuccess ||
+                    current is GetBestSellerloding,
                 builder: (context, state) {
                   // Loading
                   if (state is GetBestSellerloding) {

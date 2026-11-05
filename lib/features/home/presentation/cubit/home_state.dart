@@ -22,3 +22,19 @@ final class SearchSuccess extends HomeState {
   final List<Products>? products;
   SearchSuccess(this.products);
 }
+
+final class AddToCardSuccsess extends HomeState {
+  final int? productId;
+  AddToCardSuccsess({this.productId});
+}
+
+final class AddToCardError extends HomeState {
+  final int? productId;
+  final String? message;
+  AddToCardError({this.productId, this.message});
+}
+
+final class AddToCardLoading extends HomeState {
+  final int? productId;
+  AddToCardLoading({this.productId});
+}

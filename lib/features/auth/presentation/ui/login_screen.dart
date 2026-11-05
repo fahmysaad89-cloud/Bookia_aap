@@ -1,3 +1,4 @@
+import 'package:bookiaa/core/networking/dio_factory.dart';
 import 'package:bookiaa/core/routes/app_router.dart';
 import 'package:bookiaa/core/routes/app_routes.dart';
 import 'package:bookiaa/core/theme/app_colors.dart';
@@ -81,6 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         );
                       } else if (state is LoginSuccessStste) {
+                        DioFactory.init();
                         Navigator.pushNamed(
                           context,
                           AppRoutes.bottomnNavScreen,

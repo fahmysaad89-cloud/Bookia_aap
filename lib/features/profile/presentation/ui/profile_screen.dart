@@ -1,3 +1,4 @@
+import 'package:bookiaa/core/theme/app_colors.dart';
 import 'package:bookiaa/core/theme/app_text_styles.dart';
 import 'package:bookiaa/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:bookiaa/features/profile/presentation/ui/wedget/profile_app_bar.dart';
@@ -72,7 +73,9 @@ class ProfileScreen extends StatelessWidget {
                           ),
                           Text(
                             state.profileData?.email ?? "",
-                            style: AppTextStyles.hintTextFont,
+                            style: AppTextStyles.hintTextFont.copyWith(
+                              color: AppColors.darkGrayColor,
+                            ),
                           ),
                         ],
                       ),
