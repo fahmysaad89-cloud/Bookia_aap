@@ -1,6 +1,7 @@
 import 'package:bookiaa/core/networking/api_endpoint.dart';
 import 'package:bookiaa/core/networking/dio_factory.dart';
 import 'package:bookiaa/features/profile/data/models/profile_response.dart';
+import 'package:dio/dio.dart';
 
 class ProfileRepo {
   static Future<ProfileData?> getProfileData() async {
@@ -15,6 +16,8 @@ class ProfileRepo {
       } else {
         return null;
       }
+    } on DioException {
+      rethrow;
     } catch (e) {
       return null;
     }

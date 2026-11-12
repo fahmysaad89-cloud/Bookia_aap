@@ -12,4 +12,7 @@ final class GetProfileSuccess extends ProfileState {
   GetProfileSuccess(this.profileData);
 }
 
-final class GetProfileError extends ProfileState {}
+final class GetProfileError extends ProfileState {
+  final String? error;
+  GetProfileError({this.error});
+}

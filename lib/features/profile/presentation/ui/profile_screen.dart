@@ -28,9 +28,9 @@ class ProfileScreen extends StatelessWidget {
                       size: 45,
                     ),
                     title: const Text('Error'),
-                    content: const Text(
-                      'Please check your network.',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                    content: Text(
+                      state.error ?? 'Please check your network.',
+                      style: const TextStyle(fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
                     ),
                     actions: [
