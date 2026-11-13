@@ -3,6 +3,8 @@ import 'package:bookiaa/core/theme/app_text_styles.dart';
 import 'package:bookiaa/core/widgets/app_back_button.dart';
 import 'package:bookiaa/features/book_details/data/models/book_details_model.dart';
 import 'package:bookiaa/features/book_details/presentation/cubit/bookdetails_cubit.dart';
+import 'package:bookiaa/features/favourite/presentation/cubit/favourite_cubit.dart';
+import 'package:bookiaa/features/home/data/models/books_models.dart' as home_models;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -43,47 +45,21 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
     return '\$${value.toStringAsFixed(2)}';
   }
 
-  void _toggleBookmark() {
-    setState(() {
-      _isBookmarked = !_isBookmarked;
-    });
+  void _toggleBookmark([Data? details]) {
+    if (details?.id == null) return;
 
-    ScaffoldMessenger.of(context).hideCurrentSnackBar();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        behavior: SnackBarBehavior.floating,
-        margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
-        backgroundColor: AppColors.darkColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12.r),
-        ),
-        duration: const Duration(seconds: 2),
-        content: Row(
-          children: [
-            Icon(
-              _isBookmarked
-                  ? Icons.bookmark_added_rounded
-                  : Icons.bookmark_remove_outlined,
-              color: AppColors.primaryColor,
-              size: 20.sp,
-            ),
-            12.horizontalSpace,
-            Expanded(
-              child: Text(
-                _isBookmarked
-                    ? 'Saved to your wishlist!'
-                    : 'Removed from wishlist.',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
+    final product = home_models.Products(
+      id: details!.id,
+      name: details.name,
+      description: details.description,
+      price: details.price,
+      discount: details.discount,
+      priceAfterDiscount: details.priceAfterDiscount,
+      image: details.image,
+      category: details.category,
     );
+
+    context.read<FavouriteCubit>().toggleFavourite(product);
   }
 
   void _handleAddToCart(Data? details) {
@@ -167,7 +143,11 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
     );
   }
 
-  Widget _buildTopBar({VoidCallback? onBookmarkTap}) {
+  Widget _buildTopBar({Data? details, VoidCallback? onBookmarkTap}) {
+    final isBookmarked = (details?.id != null)
+        ? context.watch<FavouriteCubit>().isFavourite(details!.id)
+        : _isBookmarked;
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
       child: Row(
@@ -177,13 +157,13 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
           Row(
             children: [
               _buildSquareButton(
-                icon: _isBookmarked
+                icon: isBookmarked
                     ? Icons.bookmark_rounded
                     : Icons.bookmark_border_rounded,
-                iconColor: _isBookmarked
+                iconColor: isBookmarked
                     ? AppColors.primaryColor
                     : AppColors.darkColor,
-                onTap: onBookmarkTap ?? _toggleBookmark,
+                onTap: onBookmarkTap ?? () => _toggleBookmark(details),
               ),
             ],
           ),
@@ -230,7 +210,7 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
 
     return Column(
       children: [
-        _buildTopBar(),
+        _buildTopBar(details: details),
         Expanded(
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),

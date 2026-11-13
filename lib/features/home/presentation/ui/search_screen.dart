@@ -80,6 +80,33 @@ class SearchScreen extends StatelessWidget {
                           return BookItem(product: products[index]);
                         },
                       );
+                    } else if (state is SearchError) {
+                      return Center(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 24.w),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Icon(
+                                Icons.error_outline_rounded,
+                                color: Colors.redAccent,
+                                size: 48,
+                              ),
+                              12.verticalSpace,
+                              Text(
+                                state.message ??
+                                    'Search failed. Please try again.',
+                                style: TextStyle(
+                                  fontSize: 14.sp,
+                                  color: AppColors.darkColor,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
                     } else {
                       return Center(
                         child: Column(

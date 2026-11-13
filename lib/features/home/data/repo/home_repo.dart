@@ -1,11 +1,10 @@
 import 'package:bookiaa/core/networking/api_endpoint.dart';
 import 'package:bookiaa/core/networking/dio_factory.dart';
-import 'package:bookiaa/core/utls/app_constans.dart';
 import 'package:bookiaa/features/home/data/models/books_models.dart';
 import 'package:dio/dio.dart';
 
 class HomeRepo {
-  static Future<booksmodels?>? getBestSellerBooks() async {
+  static Future<booksmodels?> getBestSellerBooks() async {
     try {
       final response = await DioFactory.dio?.get(ApiEndpoint.bestseller);
 
@@ -15,12 +14,14 @@ class HomeRepo {
       } else {
         return null;
       }
+    } on DioException {
+      rethrow;
     } catch (e) {
       return null;
     }
   }
 
-  static Future<List<Products?>?> search(String text) async {
+  static Future<List<Products>?> search(String text) async {
     try {
       final response = await DioFactory.dio?.get(
         ApiEndpoint.search,
@@ -32,23 +33,27 @@ class HomeRepo {
       } else {
         return null;
       }
+    } on DioException {
+      rethrow;
     } catch (e) {
       return null;
     }
   }
 
-  static addtocart(int productaId) async {
+  static Future<bool> addtocart(int productaId) async {
     try {
       final response = await DioFactory.dio?.post(
         ApiEndpoint.addToCart,
         data: {"product_id": productaId},
       );
 
-      if (response?.statusCode == 201) {
+      if (response?.statusCode == 200 || response?.statusCode == 201) {
         return true;
       } else {
         return false;
       }
+    } on DioException {
+      rethrow;
     } catch (e) {
       return false;
     }

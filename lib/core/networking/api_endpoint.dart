@@ -10,4 +10,7 @@ class ApiEndpoint {
   static const String cart = "cart";
   static const String removeFromCart = "remove-from-cart";
   static const String updateCart = "update-cart";
+  static const String wishlist = "wishlist";
+  static const String addToWishlist = "add-to-wishlist";
+  static const String removeFromWishlist = "remove-from-wishlist";
 }

@@ -105,27 +105,44 @@ class HomeScreen extends StatelessWidget {
                   // Error
                   if (state is GetBestSellerError) {
                     return Center(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const Icon(
-                            Icons.error_outline,
-                            color: Colors.red,
-                            size: 45,
-                          ),
-                          12.verticalSpace,
-                          const Text(
-                            'Please check your network.',
-                            textAlign: TextAlign.center,
-                          ),
-                          12.verticalSpace,
-                          ElevatedButton(
-                            onPressed: () {
-                              context.read<HomeCubit>().getsellerbooks();
-                            },
-                            child: const Text('Try Again'),
-                          ),
-                        ],
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 24.w),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Icon(
+                              Icons.error_outline_rounded,
+                              color: Colors.redAccent,
+                              size: 48,
+                            ),
+                            12.verticalSpace,
+                            Text(
+                              state.message ?? 'Please check your network.',
+                              style: TextStyle(
+                                fontSize: 14.sp,
+                                color: AppColors.darkColor,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            16.verticalSpace,
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: AppColors.primaryColor,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.r),
+                                ),
+                              ),
+                              onPressed: () {
+                                context.read<HomeCubit>().getsellerbooks();
+                              },
+                              child: const Text(
+                                'Try Again',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     );
                   }

@@ -7,4 +7,5 @@ class AppRoutes {
   static const String searchScreen = "SearchScreen";
   static const String bookdetailsscreen = "Book_details_screen";
   static const String bottomnNavScreen = "Bottom_Nav_screen";
+  static const String favouriteScreen = "favourite_screen";
 }

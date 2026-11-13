@@ -1,6 +1,7 @@
 import 'package:bookiaa/core/routes/app_routes.dart';
 import 'package:bookiaa/core/theme/app_colors.dart';
 import 'package:bookiaa/core/widgets/app_snack_bar.dart';
+import 'package:bookiaa/features/favourite/presentation/cubit/favourite_cubit.dart';
 import 'package:bookiaa/features/home/data/models/books_models.dart';
 import 'package:bookiaa/features/home/presentation/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
@@ -40,34 +41,86 @@ class BookItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10.r),
-                child: (product?.image != null && product!.image!.isNotEmpty)
-                    ? Image.network(
-                        product!.image!,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) => Container(
-                          width: double.infinity,
-                          color: AppColors.borderColor,
-                          child: const Center(
+              child: Stack(
+                children: [
+                  Positioned.fill(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10.r),
+                      child: (product?.image != null &&
+                              product!.image!.isNotEmpty)
+                          ? Image.network(
+                              product!.image!,
+                              width: double.infinity,
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) =>
+                                  Container(
+                                width: double.infinity,
+                                color: AppColors.borderColor,
+                                child: const Center(
+                                  child: Icon(
+                                    Icons.broken_image,
+                                    color: AppColors.grayColor,
+                                  ),
+                                ),
+                              ),
+                            )
+                          : Container(
+                              width: double.infinity,
+                              color: AppColors.borderColor,
+                              child: const Center(
+                                child: Icon(
+                                  Icons.image_not_supported_outlined,
+                                  color: AppColors.grayColor,
+                                ),
+                              ),
+                            ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 6.h,
+                    right: 6.w,
+                    child: BlocBuilder<FavouriteCubit, FavouriteState>(
+                      builder: (context, state) {
+                        final isSaved = context
+                            .watch<FavouriteCubit>()
+                            .isFavourite(product?.id);
+                        return InkWell(
+                          onTap: () {
+                            if (product != null) {
+                              context
+                                  .read<FavouriteCubit>()
+                                  .toggleFavourite(product!);
+                            }
+                          },
+                          borderRadius: BorderRadius.circular(16.r),
+                          child: Container(
+                            padding: EdgeInsets.all(5.w),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withValues(alpha: 0.9),
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withValues(alpha: 0.08),
+                                  blurRadius: 4,
+                                  offset: const Offset(0, 2),
+                                ),
+                              ],
+                            ),
                             child: Icon(
-                              Icons.broken_image,
-                              color: AppColors.grayColor,
+                              isSaved
+                                  ? Icons.bookmark_rounded
+                                  : Icons.bookmark_border_rounded,
+                              size: 18.sp,
+                              color: isSaved
+                                  ? AppColors.primaryColor
+                                  : AppColors.grayColor,
                             ),
                           ),
-                        ),
-                      )
-                    : Container(
-                        width: double.infinity,
-                        color: AppColors.borderColor,
-                        child: const Center(
-                          child: Icon(
-                            Icons.image_not_supported_outlined,
-                            color: AppColors.grayColor,
-                          ),
-                        ),
-                      ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
             10.verticalSpace,

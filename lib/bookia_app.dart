@@ -2,8 +2,10 @@ import 'package:bookiaa/core/routes/app_router.dart';
 import 'package:bookiaa/core/routes/app_routes.dart';
 import 'package:bookiaa/core/services/local/local_helper.dart';
 import 'package:bookiaa/core/utls/app_constans.dart';
+import 'package:bookiaa/features/favourite/presentation/cubit/favourite_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BookiaApp extends StatelessWidget {
@@ -15,14 +17,17 @@ class BookiaApp extends StatelessWidget {
       designSize: const Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: true,
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        localizationsDelegates: context.localizationDelegates,
-        supportedLocales: context.supportedLocales,
-        locale: context.locale,
-        theme: ThemeData(fontFamily: "DM"),
-        initialRoute: initpage(),
-        onGenerateRoute: AppRouter.onGenerateRoute,
+      child: BlocProvider(
+        create: (context) => FavouriteCubit()..getFavourites(),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
+          theme: ThemeData(fontFamily: "DM"),
+          initialRoute: initpage(),
+          onGenerateRoute: AppRouter.onGenerateRoute,
+        ),
       ),
     );
   }

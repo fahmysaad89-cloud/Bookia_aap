@@ -6,6 +6,8 @@ import 'package:bookiaa/features/auth/presentation/ui/register_screen.dart';
 import 'package:bookiaa/features/book_details/presentation/cubit/bookdetails_cubit.dart';
 import 'package:bookiaa/features/book_details/presentation/ui/book_details_screen.dart';
 import 'package:bookiaa/features/bottom_nav_bar/presentation/ui/bottom_nav_bar_screen.dart';
+import 'package:bookiaa/features/favourite/presentation/cubit/favourite_cubit.dart';
+import 'package:bookiaa/features/favourite/presentation/ui/favourite_screen.dart';
 import 'package:bookiaa/features/home/presentation/cubit/home_cubit.dart';
 import 'package:bookiaa/features/home/presentation/ui/home_screen.dart';
 import 'package:bookiaa/features/home/presentation/ui/search_screen.dart';
@@ -56,6 +58,11 @@ class AppRouter {
             child: SearchScreen(),
           ),
         );
+      case AppRoutes.favouriteScreen:
+        return MaterialPageRoute(
+          builder: (_) => const FavouriteScreen(),
+        );
+
       case AppRoutes.bookdetailsscreen:
         int id = setting.arguments as int;
 
